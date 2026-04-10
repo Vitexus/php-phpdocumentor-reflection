@@ -125,7 +125,7 @@ final class ElementNameResolver extends NodeVisitorAbstract
                 $this->parts->push('::' . $node->name . '()');
                 $this->setFqsen($node);
 
-                return NodeTraverser::DONT_TRAVERSE_CHILDREN;
+                break;
 
             case ClassConst::class:
                 $this->parts->push('::');

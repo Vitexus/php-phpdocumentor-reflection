@@ -275,9 +275,9 @@ class ProjectCreationTest extends MockeryTestCase
 
         self::assertEquals(
             new Expression(
-                '{{ PHPDOCa8cfde6331bd59eb2ac96f8911c4b666 }}',
+                '{{ PHPDOC0de51a5acf75f22ec3c4a9568981d703 }}',
                 [
-                    '{{ PHPDOCa8cfde6331bd59eb2ac96f8911c4b666 }}' => new Object_(),
+                    '{{ PHPDOC0de51a5acf75f22ec3c4a9568981d703 }}' => new Fqsen('\OBJECT'),
                 ],
             ),
             $functions['\bar()']->getArguments()[0]->getDefault(false)
