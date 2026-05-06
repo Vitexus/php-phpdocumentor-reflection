@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+PKG_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/~.*//')
+PKG_SOURCE  := $(shell jq -r '.name' composer.json)
+
+%:
+	dh $@
+
+override_dh_auto_build:
+
+override_dh_auto_test:
+
+override_dh_install:
+	mkdir -p debian/php-phpdocumentor-reflection/usr/share/php/phpDocumentor
+	cp -r src/phpDocumentor/. debian/php-phpdocumentor-reflection/usr/share/php/phpDocumentor/
+	install -m 644 debian/autoload.php debian/php-phpdocumentor-reflection/usr/share/php/phpDocumentor/autoload-reflection.php
+	sed -i "s|'unknown'|'$(PKG_SOURCE)'|" debian/php-phpdocumentor-reflection/usr/share/php/phpDocumentor/autoload-reflection.php
+	sed -i "s|'0.0.0'|'$(PKG_VERSION)'|" debian/php-phpdocumentor-reflection/usr/share/php/phpDocumentor/autoload-reflection.php
